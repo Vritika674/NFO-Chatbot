@@ -1,0 +1,24 @@
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    user_input = request.json.get('message', '').lower()
+
+    if 'start' in user_input or 'hello' in user_input or 'hi' in user_input:
+        reply = (
+            "👋 Hello! We are from *NFO*. We're here to answer any of your questions.\n\n"
+            "📋 *Menu - Choose a category to get started:*\n"
+            "1️⃣ Guidebooks\n"
+            "2️⃣ Olympiad\n"
+            "3️⃣ Shipping\n"
+            "4️⃣ Others"
+        )
+    else:
+        reply = "Please enter a number (1–4) or type 'start' to view the menu again."
+
+    return jsonify({"reply": reply})
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=10000)
