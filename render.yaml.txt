@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: NFO Chatbot
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: "python chatbot.py"
